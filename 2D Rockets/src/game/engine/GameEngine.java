@@ -5,17 +5,18 @@ import game.engine.entities.*;
 
 public class GameEngine {
 	
-	GameScreen gameScreen;
-	Window gameWindow;
+	private static GameScreen gameScreen;
+	private static Window gameWindow;
 	
 	public GameEngine(String windowName, int screenWidth, int screenHeight){
 		
 		gameScreen = new GameScreen();
+		gameScreen.registerKeyListener(gameScreen);
 		
 		gameWindow = new Window(screenWidth, screenHeight, windowName, gameScreen);
 		
 	}
-	
+
 	public void addCelestialBody(String name, double mass, double radius){
 		gameScreen.addCelestialBody(new CelestialBody(name, mass, radius));
 	}

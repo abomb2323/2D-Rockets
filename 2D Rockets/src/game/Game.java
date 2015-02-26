@@ -22,8 +22,9 @@ public class Game {
 			System.out.println("[" + engine.getCelestialBody(i).getName() + "]");
 		}
 		
-		
 		engine.setVisible(true);
+		
+		SoundEffect.BACKGROUND.play();
 	}
 	
 	
