@@ -8,8 +8,8 @@ public class OrbitalEntity extends Entity{
 	//Radius of object, in meters
 	private double radius;
 	
-	//Orbital Height in meters, initially set to 0
-	private double orbitHeight = 0;
+	//Orbital Height in meters
+	private double orbitHeight;
 	
 	//Parent body of the object
 	private CelestialBody parentBody;
@@ -36,6 +36,7 @@ public class OrbitalEntity extends Entity{
 		this.mass = mass;
 		this.radius = radius;
 		this.parentBody = parentBody;
+		orbitHeight = this.getApoapsis();
 		parentBody.addChild(this);
 	}
 	

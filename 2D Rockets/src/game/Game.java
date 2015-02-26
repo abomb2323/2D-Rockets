@@ -11,16 +11,19 @@ public class Game {
 		CelestialBody Mun = new CelestialBody("Mun",  12000000d, 12000000d, 9.7600236E20d, 200000d, Kerbin);
 		CelestialBody Minmus = new CelestialBody("Minmus",  47000000d, 47000000d, 2.6457897E19d, 60000d, Kerbin);
 		
-		Kerbin.setOrbitalHeight(Kerbin.getApoapsis());
-		Mun.setOrbitalHeight(Mun.getApoapsis());
-		Minmus.setOrbitalHeight(Minmus.getApoapsis());
-
-		System.out.println(PhysicsLibrary.getGravityForce(Kerbol));
-		System.out.println(PhysicsLibrary.getGravityForce(Kerbin));
-		System.out.println(PhysicsLibrary.getGravityForce(Mun));
-		System.out.println(PhysicsLibrary.getGravityForce(Minmus));
+		GameEngine engine = new GameEngine("2D Rockets", 1024, 768);
 		
-		printChildBodies(Kerbin);
+		engine.addCelestialBody(Kerbol);
+		engine.addCelestialBody(Kerbin);
+		engine.addCelestialBody(Mun);
+		engine.addCelestialBody(Minmus);
+		
+		for(int i = 0; i < engine.getCelestialBodyList().size(); i++){
+			System.out.println("[" + engine.getCelestialBody(i).getName() + "]");
+		}
+		
+		
+		engine.setVisible(true);
 	}
 	
 	
