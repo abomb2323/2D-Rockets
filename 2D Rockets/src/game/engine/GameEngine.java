@@ -1,6 +1,14 @@
-package game.engine;
-import java.util.ArrayList;
+/**
+ * @author Adam Crick
+ * @date 9/10/2015
+ * @description: This is the game engine, it contains links to all of the entities, graphics, and physics within the game
+ * 					It also contains the main game loop, which progresses the game at a prescribed 'tick' to keep the
+ * 					physics in check with the graphics.
+ */
 
+package game.engine;
+
+import java.util.ArrayList;
 import game.engine.entities.*;
 
 public class GameEngine {

@@ -1,32 +1,49 @@
 package game;
 
 import java.util.ArrayList;
+import java.util.Random;
+
 import game.engine.*;
 import game.engine.entities.*;
 
 public class Game {
 	public static void main(String[] args){
-		CelestialBody Kerbol = new CelestialBody("Kerbol", 1.7565670E28d, 261600000d);
-		CelestialBody Kerbin = new CelestialBody("Kerbin",  13599840256d, 13599840256d, 5.2915793E22d, 600000d, Kerbol);
-		CelestialBody Mun = new CelestialBody("Mun",  12000000d, 12000000d, 9.7600236E20d, 200000d, Kerbin);
-		CelestialBody Minmus = new CelestialBody("Minmus",  47000000d, 47000000d, 2.6457897E19d, 60000d, Kerbin);
+		
+		//TESTING SHIT//
+		Random rand = new Random();
+		
 		
 		GameEngine engine = new GameEngine("2D Rockets", 1024, 768);
 		
-		engine.addCelestialBody(Kerbol);
-		engine.addCelestialBody(Kerbin);
-		engine.addCelestialBody(Mun);
-		engine.addCelestialBody(Minmus);
+		System.out.println("Creating and loading bodies...");
+		long time = System.nanoTime();
 		
-		for(int i = 0; i < engine.getCelestialBodyList().size(); i++){
-			System.out.println("[" + engine.getCelestialBody(i).getName() + "]");
+		for(int i = 0; i < 100000; i++){
+			CelestialBody body = new CelestialBody(generateString(rand, "abcdefghijklmnopqrstuvwxyz", 8), rand.nextDouble()*Long.MAX_VALUE, rand.nextDouble() * Integer.MAX_VALUE);
+			engine.addCelestialBody(body);
 		}
+		
+		time = System.nanoTime() - time;
+		System.out.println("Done! Took " + (((float)time)/1000000) + "ms");
+		
+		System.out.print("Celestial Bodies: " + engine.getCelestialBodyList().size());
 		
 		engine.setVisible(true);
 		
 		SoundEffect.BACKGROUND.play();
 	}
 	
+	
+	
+	//FOR TEST USE ONLY!!!//
+	public static String generateString(Random rng, String characters, int length){
+	    char[] text = new char[length];
+	    for (int i = 0; i < length; i++)
+	    {
+	        text[i] = characters.charAt(rng.nextInt(characters.length()));
+	    }
+	    return new String(text);
+	}
 	
 	//TEST METHOD, NO REAL USE OTHER THAN TESTING
 	public static void printChildBodies(CelestialBody body){

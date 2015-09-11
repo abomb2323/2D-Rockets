@@ -1,31 +1,22 @@
 package game.engine;
 
 import game.engine.entities.CelestialBody;
+import graphics.ShapeLibrary;
 
 import java.util.ArrayList;
 
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.Timer;
-
-
-
-
-
-
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-import java.awt.geom.AffineTransform;
-import java.awt.image.BufferedImage;
 
 public class GameScreen extends JPanel implements ActionListener, KeyEventListener {
 	
+
 	private KeyEventHandler keyHandler;
 	private Timer timer;
 	
@@ -44,8 +35,6 @@ public class GameScreen extends JPanel implements ActionListener, KeyEventListen
 		addKeyListener(keyHandler);
 		setFocusable(true);
 		setDoubleBuffered(true);
-		timer = new Timer(5, this);
-		timer.start();
 	}
 	
 	public void addCelestialBody(CelestialBody body){
@@ -63,6 +52,7 @@ public class GameScreen extends JPanel implements ActionListener, KeyEventListen
 	public void paint(Graphics g) {
 		super.paint(g);
 		Graphics2D g2 = (Graphics2D) g;
+		ShapeLibrary shapes = new ShapeLibrary(g2);
 		
 		if(keysPressed[0] == 1){
 			SoundEffect.CHING.play();
