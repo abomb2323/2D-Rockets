@@ -18,7 +18,7 @@ public class Game {
 		System.out.println("Creating and loading bodies...");
 		long time = System.nanoTime();
 		
-		for(int i = 0; i < 100000; i++){
+		for(int i = 0; i < 100; i++){
 			CelestialBody body = new CelestialBody(generateString(rand, "abcdefghijklmnopqrstuvwxyz", 8), rand.nextDouble()*Long.MAX_VALUE, rand.nextDouble() * Integer.MAX_VALUE);
 			engine.addCelestialBody(body);
 		}
