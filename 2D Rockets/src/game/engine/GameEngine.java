@@ -10,6 +10,10 @@ package game.engine;
 
 import java.util.ArrayList;
 
+import org.lwjgl.LWJGLException;
+import org.lwjgl.opengl.Display;
+import org.lwjgl.opengl.DisplayMode;
+
 import game.engine.entities.*;
 import game.engine.graphics.GameScreen;
 import game.engine.physics.*;
@@ -23,22 +27,31 @@ public class GameEngine {
 	
 	public GameEngine(String windowName, int screenWidth, int screenHeight){
 		
+		try{
+			Display.setDisplayMode(new DisplayMode(screenWidth, screenHeight));
+			Display.setTitle(windowName);
+			Display.create();
+		} catch(LWJGLException e){
+			e.printStackTrace();
+			Display.destroy();
+			System.exit(1);
+		}
+		
 		gameScreen = new GameScreen();
-
-		gameLoop();
 	}
 
 	//Loop for the game's logic
 	public void gameLoop(){
 		while(!quit){
+			Display.update();
 			
 			
-			try {
-				Thread.sleep(17);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+			
+			quit = Display.isCloseRequested();
+			Display.sync(60);
 		}
+		
+		Display.destroy();
 	}
 	
 	public void addCelestialBody(String name, double mass, double radius){

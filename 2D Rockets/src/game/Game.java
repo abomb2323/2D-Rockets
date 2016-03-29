@@ -3,18 +3,18 @@ package game;
 import java.util.ArrayList;
 import java.util.Random;
 
+import org.lwjgl.LWJGLException;
+import org.lwjgl.opengl.Display;
+import org.lwjgl.opengl.DisplayMode;
+
 import game.engine.*;
 import game.engine.entities.*;
-
 import game.engine.math.*;
 
 public class Game {
 	public static void main(String[] args){
 		
-		//TESTING SHIT//
-		Random rand = new Random();
-		
-		
+		System.out.println("Starting game screen on OpenGL " + Display.getVersion() + " on adapter " + Display.getAdapter());
 		GameEngine engine = new GameEngine("2D Rockets", 1024, 768);
 		
 		System.out.println("Creating and loading bodies...");
@@ -27,6 +27,8 @@ public class Game {
 		
 		time = System.nanoTime() - time;
 		System.out.println("Done! Took " + (((float)time)/1000000) + "ms");
+		
+		engine.gameLoop();
 		
 		//System.out.print("Celestial Bodies: " + engine.getCelestialBodyList().size());
 		
