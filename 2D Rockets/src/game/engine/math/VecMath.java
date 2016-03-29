@@ -18,6 +18,7 @@ public class VecMath {
 		
 		double mag = Math.sqrt(Math.pow(xComps, 2) + Math.pow(yComps, 2));
 		
+		//Angle is computed by arctan(y/x) of new angle
 		Vector result = new Vector(posX, posY, mag, Math.toDegrees(Math.atan2(yComps, xComps)));
 		
 		return result;

@@ -9,22 +9,38 @@
 package game.engine;
 
 import java.util.ArrayList;
+
 import game.engine.entities.*;
+import game.engine.graphics.GameScreen;
+import game.engine.physics.*;
 
 public class GameEngine {
 	
 	private static GameScreen gameScreen;
-	private static Window gameWindow;
+	private static PhysicsWrangler physicsLoop;
+	
+	private boolean quit = false;
 	
 	public GameEngine(String windowName, int screenWidth, int screenHeight){
 		
 		gameScreen = new GameScreen();
-		gameScreen.registerKeyListener(gameScreen);
-		
-		gameWindow = new Window(screenWidth, screenHeight, windowName, gameScreen);
-		
+
+		gameLoop();
 	}
 
+	//Loop for the game's logic
+	public void gameLoop(){
+		while(!quit){
+			
+			
+			try {
+				Thread.sleep(17);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
 	public void addCelestialBody(String name, double mass, double radius){
 		gameScreen.addCelestialBody(new CelestialBody(name, mass, radius));
 	}
@@ -44,9 +60,4 @@ public class GameEngine {
 	public ArrayList<CelestialBody> getCelestialBodyList(){
 		return gameScreen.getCelestialBodyList();
 	}
-	
-	public void setVisible(boolean visible){
-		gameWindow.changeVisibility(visible);
-	}
-	
 }
