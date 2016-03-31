@@ -1,12 +1,17 @@
 package game.engine.graphics;
 
-import java.awt.Graphics2D;
+import org.lwjgl.opengl.GL11;
+import org.lwjgl.util.*;
 
 public class ShapeLibrary {
 	
-	private Graphics2D graphics;
-	
-	public ShapeLibrary(Graphics2D graphics){
-		this.graphics = graphics;
+	public static void drawSquare(double x, double y, double width, double height, ReadableColor color){
+		GL11.glBegin(GL11.GL_QUADS);
+			GL11.glColor3f(color.getRed(), color.getGreen(), color.getBlue());
+			GL11.glVertex2d(x, y); //Bottom Left
+			GL11.glVertex2d(x, height + y); //Top Left
+			GL11.glVertex2d(width + x, height + y); //Top Right
+			GL11.glVertex2d(width + x, y); //Bottom Right
+		GL11.glEnd();
 	}
 }

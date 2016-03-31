@@ -1,6 +1,7 @@
 package game.engine.graphics;
 
 import game.engine.entities.CelestialBody;
+import game.engine.entities.Entity;
 
 import java.util.ArrayList;
 
@@ -12,25 +13,34 @@ import static org.lwjgl.opengl.GL11.*;
 
 public class GameScreen{
 	
-	private ArrayList<CelestialBody> celestialBodies;
+	private ArrayList<Entity> screenEntities;
 	
 	public GameScreen() { 
 		
-		celestialBodies = new ArrayList<CelestialBody>();
 		
+		screenEntities = new ArrayList<Entity>();
 		
 	}
 	
-	public void addCelestialBody(CelestialBody body){
-		celestialBodies.add(body);
+	public void render(){
+		GL11.glClear(GL11.GL_COLOR_BUFFER_BIT);
+		
+		for(Entity entity : screenEntities){
+			entity.render();
+		}
+		
 	}
 	
-	public CelestialBody getCelestialBody(int index){
-		return celestialBodies.get(index);
+	public void addEntity(Entity entity){
+		screenEntities.add(entity);
+	}
+	
+	public Entity getEntity(int index){
+		return screenEntities.get(index);
 	}
 
-	public ArrayList<CelestialBody> getCelestialBodyList() {
-		return celestialBodies;
+	public ArrayList<Entity> getEntityList() {
+		return screenEntities;
 	}
 
 }

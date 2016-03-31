@@ -10,6 +10,7 @@ import org.lwjgl.opengl.DisplayMode;
 import game.engine.*;
 import game.engine.entities.*;
 import game.engine.math.*;
+import game.engine.physics.Force;
 
 public class Game {
 	public static void main(String[] args){
@@ -20,10 +21,10 @@ public class Game {
 		System.out.println("Creating and loading bodies...");
 		long time = System.nanoTime();
 		
-//		for(int i = 0; i < 100; i++){
-//			CelestialBody body = new CelestialBody(generateString(rand, "abcdefghijklmnopqrstuvwxyz", 8), rand.nextDouble()*Long.MAX_VALUE, rand.nextDouble() * Integer.MAX_VALUE);
-//			engine.addCelestialBody(body);
-//		}
+		Entity test = new Entity("Test", "SQUARE", 300, 200, 10);
+		test.addForce(new Force("push", 300, 200, 15, 40));
+		test.addForce(new Force("sad", 300, 200, 15, 220));
+		engine.addEntity(test);
 		
 		time = System.nanoTime() - time;
 		System.out.println("Done! Took " + (((float)time)/1000000) + "ms");
@@ -31,9 +32,6 @@ public class Game {
 		engine.gameLoop();
 		
 		//System.out.print("Celestial Bodies: " + engine.getCelestialBodyList().size());
-		
-		//SoundEffect.BACKGROUND.play();
-		
 	}
 	
 	

@@ -6,7 +6,7 @@ public class Vector {
 	
 	private double x, y; //Position
 	private double magnitude; //'length'
-	private double[] components; //x and y values of the vector 0 == x component 1 == y component
+	private double[] components = null; //x and y values of the vector 0 == x component 1 == y component
 	private double angle; //Measured from x-axis in degrees
 	
 	//Position, magnitude and angle
@@ -30,6 +30,26 @@ public class Vector {
 		angle = theta;
 	}
 
+	public void setX(double x) {
+		this.x = x;
+	}
+
+	public void setY(double y) {
+		this.y = y;
+	}
+
+	public void setMagnitude(double magnitude) {
+		this.magnitude = magnitude;
+	}
+
+	public void setComponents(double[] components) {
+		this.components = components;
+	}
+
+	public void setAngle(double angle) {
+		this.angle = angle;
+	}
+
 	public double getX() {
 		return x;
 	}
@@ -43,6 +63,14 @@ public class Vector {
 	}
 
 	public double[] getComponents() {
+		
+		if(this.components == null){
+			double[] comps = new double[2];
+			comps[0] = magnitude * Math.cos(Math.toRadians(angle));
+			comps[1] = magnitude * Math.sin(Math.toRadians(angle));
+			return comps;
+		}
+		
 		return components;
 	}
 
